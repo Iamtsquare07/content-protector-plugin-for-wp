@@ -1,36 +1,14 @@
 <?php
 /*
-Plugin Name: Son Secure Content Guard
-Description:Son Secure Content Guard is a powerful yet user-friendly plugin designed to safeguard your valuable website content from unauthorized copying and plagiarism. With this plugin, you can easily protect your texts, images, and other media elements from being copied, ensuring the integrity of your intellectual property. Use settings to turn features on or off.
-
-The plugin employs advanced JavaScript-based protection techniques that deter casual content theft. Whenever a user attempts to copy any protected content, Son Secure Content Guard promptly triggers an alert, notifying them that copying is strictly prohibited. This not only discourages potential content thieves but also raises awareness about the importance of respecting copyright and intellectual property rights.
-
-Key Features:
-
-Effortless Protection: Son Secure Content Guard offers a seamless experience for website owners with its simple setup and activation process. You can quickly enable content protection across your entire website with just a few clicks.
-
-Customizable Alert: Tailor the alert message displayed to users attempting to copy your content. You have the flexibility to use a personalized message that best suits your website's tone and style.
-
-Selective Protection: Choose which specific parts of your content you want to protect. You can apply content protection to entire posts, pages, or individual sections, ensuring full control over your content's security.
-
-Compatibility & Performance: The plugin is designed to be lightweight and optimized for performance, ensuring that it does not affect your website's loading speed or user experience.
-
-Responsive Design: Son Secure Content Guard works seamlessly across various devices and screen sizes, providing consistent content protection for all your visitors.
-
-User-Friendly Settings: The plugin's intuitive settings panel allows you to manage and customize the protection options effortlessly, even for users with limited technical expertise.
-
-Regular Updates & Support: You can trust Son Secure Content Guard to stay up-to-date with the latest WordPress versions and security standards. Our dedicated support team is always ready to assist you with any inquiries or issues.
-
-Protect your hard work and creativity with Son Secure Content Guard, fortifying your WordPress website against content theft and preserving the value of your digital assets. Safeguard your intellectual property and maintain your content's exclusivity with ease, using the comprehensive and robust content protection features offered by Son Secure Content Guard plugin.
-
-This plugin is open source and you can contribute by going to iamtsquare07.com/content-protector-plugin
-You can also contribute by donating to us on iamtsquare07.com/content-protector-plugin-heroes
-
-Version: 1.0.0
-Author: Tyavbee Victor
+Plugin Name: Son Secure Content Guard & Copyright Protection
+Author: tsquare07
+Version: 1.0.7
+Description: You can stop copycats from easily taking away your hard work. Protect your text, images, and other media with this lightweight plugin. Keep your content safe by deactivating right click, copying and text highlighting even when JavaScript is disabled.
 Author URI: https://www.iamtsquare07.com
-Text Domain: son-content-protector
+License: GPLv3 or later
+Text Domain: son-secure-content-guard
 */
+
 // Exit if accessed directly.
 if (!defined('ABSPATH')) {
     exit;
@@ -38,8 +16,8 @@ if (!defined('ABSPATH')) {
 
 function son_cp_plugin_menu() {
     add_options_page(
-        'Content Protector Settings',
-        'Content Protector',
+        'Son Content Protector Settings',
+        'Son Content Protector',
         'manage_options',
         'son-content-protector-settings',
         'son_cp_settings_page'
@@ -92,8 +70,6 @@ function son_cp_settings_page() {
                 </tr>
             </table>
             <script>
-                console.log("This is from son content protector")
-    // Function to handle radio button changes and store settings in localStorage
     function handleRadioButtonChange(event) {
         const target = event.target;
         if (target.name === 'son_cp_enable_copy_protection' || target.name === 'son_cp_enable_right_click_protection') {
@@ -101,7 +77,7 @@ function son_cp_settings_page() {
         }
     }
 
-    // Function to load the initial radio button values from localStorage
+    // Function to load the initial button values from localStorage
     function loadRadioButtonsFromLocalStorage() {
         const enableCopy = document.getElementById('enableCopy');
         const disableCopy = document.getElementById('disableCopy');
@@ -124,7 +100,7 @@ function son_cp_settings_page() {
         }
     }
 
-    // Attach event listeners to radio buttons
+    // Attach event listeners
     const enableCopy = document.getElementById('enableCopy');
     const disableCopy = document.getElementById('disableCopy');
     const enableRightClick = document.getElementById('enableRightClick');
@@ -135,7 +111,7 @@ function son_cp_settings_page() {
     enableRightClick.addEventListener('change', handleRadioButtonChange);
     disableRightClick.addEventListener('change', handleRadioButtonChange);
 
-    // Load the initial radio button values from localStorage
+    // Load the initial values from localStorage
     loadRadioButtonsFromLocalStorage();
 </script>
 
