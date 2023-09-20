@@ -1,4 +1,4 @@
-## Content Protector Plugin for WP v1.07
+## Content Protector Plugin for WP v1.0.7
 This is a WordPress plugin that allows users to protect their content against copycats. It can stop the user from copying the text, right-clicking on the page, and also stop text highlighting.
 
 ## Description
