@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Son Secure Content Guard & Copyright Protection
+Plugin Name: Son Secure Content Guard
 Author: tsquare07
-Version: 1.0.7
+Version: 1.0.0
 Description: You can stop copycats from easily taking away your hard work. Protect your text, images, and other media with this lightweight plugin. Keep your content safe by deactivating right click, copying and text highlighting even when JavaScript is disabled.
 Author URI: https://www.iamtsquare07.com
 License: GPLv3 or later
@@ -77,7 +77,7 @@ function son_cp_settings_page() {
         }
     }
 
-    // Function to load the initial button values from localStorage
+    // Load the initial button values from localStorage
     function loadRadioButtonsFromLocalStorage() {
         const enableCopy = document.getElementById('enableCopy');
         const disableCopy = document.getElementById('disableCopy');
@@ -180,25 +180,7 @@ function scp_add_css() {
 }
 add_action('wp_head', 'scp_add_css');
 
-// Cleanup the plugin data on plugin deactivation (optional)
-function son_cp_deactivation() {
-    // Cleanup tasks specific to your plugin
-    // Remove custom database tables, options, or files
-
-    // Notify the user about the deactivation process
-    add_action('admin_notices', 'son_cp_deactivation_notice');
-}
-
-function son_cp_deactivation_notice() {
-    echo '<div class="notice notice-success is-dismissible">';
-    echo '<p>Your plugin has been deactivated, and cleanup tasks have been performed.</p>';
-    echo '</div>';
-}
-
-// Register the uninstall hook
-register_uninstall_hook(__FILE__, 'son_cp_uninstall');
-
-// Define the uninstallation function
+// Cleaning up the plugin data on plugin deactivation
 function son_cp_uninstall() {
     // Delete the plugin options when the plugin is uninstalled
     delete_option('son_cp_enable_copy_protection');
@@ -207,38 +189,6 @@ function son_cp_uninstall() {
     delete_option('son_cp_right_click_message');
 }
 
-// Cleanup the plugin files on plugin deletion
-function son_cp_delete_plugin() {
-    // Check if the deletion is being triggered by WordPress, not directly
-    if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'delete-selected') {
-        // Get the plugin directory path
-        $plugin_dir = plugin_dir_path(__FILE__);
-
-        // List of allowed files within the plugin directory
-        $allowed_files = array(
-            'son-content-protector.php', 
-            'includes/content-protector.js', 
-            // Add other plugin files if needed
-        );
-
-        // Get the file path to be deleted
-        $file_to_delete = sanitize_text_field($_REQUEST['plugin']);
-
-        // Ensure the file path is valid and allowed
-        if (in_array($file_to_delete, $allowed_files) && strpos($file_to_delete, $plugin_dir) === 0) {
-            // Log the file deletion for auditing
-            error_log("Plugin file deleted: $file_to_delete");
-
-            // Delete the file
-            if (file_exists($file_to_delete)) {
-                unlink($file_to_delete);
-            }
-        } else {
-            // Log unauthorized file deletion attempt for auditing
-            error_log("Unauthorized file deletion attempt: $file_to_delete");
-        }
-    }
-}
-add_action('delete_plugin', 'son_cp_delete_plugin');
-
+// Register the uninstall hook
+register_uninstall_hook(__FILE__, 'son_cp_uninstall');
 ?>
